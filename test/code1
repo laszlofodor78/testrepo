@@ -10,7 +10,12 @@ Tipus1:
         If iStage_KezdoPeriodus1Idosz = Month(Date) Then
 '            GoTo Tipus2
         End If
-        
+
+
+'módosítás 1
+
+
+
         Set dict_Tipus_1 = Create_tbl_Konyvelesi_Periodusok_Record_As_A_Dictionary( _
                     1, _
                     iStage_VallalatKod, _
