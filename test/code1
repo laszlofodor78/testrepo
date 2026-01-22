@@ -1,1 +1,28 @@
+Tipus1:
+            ' ha a STAGE 'KezdoGazdasagiEv1Idoszak' = aktuális év és az aktuális export STAGE 'KezdoPeriodus1Idosz' értéke
+                '---> lekérdezendő év: az aktuális exportból a 'KezdoGazdasagiEv1Idoszak'
+                '---> lekérdezendő záró periódus: az aktuális exportból a 'KezdoPeriodus1Idosz'
+                
+        iTargyEv = iStage_KezdoGazdasagiEv1Idoszak
+        iTargyZaroPeriodus = iStage_KezdoPeriodus1Idosz
+        
+        ' ha az aktuális év nyitott periódusában vagyunk, akkor tovább
+        If iStage_KezdoPeriodus1Idosz = Month(Date) Then
+'            GoTo Tipus2
+        End If
+        
+        Set dict_Tipus_1 = Create_tbl_Konyvelesi_Periodusok_Record_As_A_Dictionary( _
+                    1, _
+                    iStage_VallalatKod, _
+                    iStage_KezdoGazdasagiEv1Idoszak, _
+                    iStage_KezdoPeriodus1Idosz, _
+                    dateStage_ExportIdopont, _
+                    lStage_ExportokId, _
+                    0, _
+                    lStage_SourceRow)
 
+        If Upload_Record_To_tbl_Konyvelesi_Periodusok(dict_Tipus_1) = 0 Then
+            GoTo NextVallalat
+        End If
+        
+        iDeleteAllFirst = iDeleteAllFirst + 1
